@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EmployeeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EmployeeDB.dbo.EmployeeInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="EmployeeInfo">
+    <Key>
+      <PropertyRef Name="EmployeeNo" />
+    </Key>
+    <Property Name="EmployeeNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="DateOfBirth" Type="datetime" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="MobileNo" Type="varchar" MaxLength="50" />
+    <Property Name="PostelCode" Type="varchar" MaxLength="50" />
+    <Property Name="EmailId" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Function Name="usp_InsertNewEmployeeDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmployeeNo" Type="int" Mode="In" />
+    <Parameter Name="FirstName" Type="varchar" Mode="In" />
+    <Parameter Name="LastName" Type="varchar" Mode="In" />
+    <Parameter Name="DateOfBirth" Type="datetime" Mode="In" />
+    <Parameter Name="Address" Type="varchar" Mode="In" />
+    <Parameter Name="MobileNo" Type="varchar" Mode="In" />
+    <Parameter Name="PostelCode" Type="varchar" Mode="In" />
+    <Parameter Name="EmailId" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="EmployeeDBModelStoreContainer">
+    <EntitySet Name="EmployeeInfo" EntityType="Self.EmployeeInfo" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [EmployeeInfo].[EmployeeNo] AS [EmployeeNo], 
+    [EmployeeInfo].[FirstName] AS [FirstName], 
+    [EmployeeInfo].[LastName] AS [LastName], 
+    [EmployeeInfo].[DateOfBirth] AS [DateOfBirth], 
+    [EmployeeInfo].[Address] AS [Address], 
+    [EmployeeInfo].[MobileNo] AS [MobileNo], 
+    [EmployeeInfo].[PostelCode] AS [PostelCode], 
+    [EmployeeInfo].[EmailId] AS [EmailId]
+    FROM [dbo].[EmployeeInfo] AS [EmployeeInfo]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
